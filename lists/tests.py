@@ -1,7 +1,12 @@
+from django.core.urlresolvers import resolve
 from django.test import TestCase
+from lists.views import home_page
 
-class SmokeTest(TestCase):
-    """Does our magically-created test runner even run a unittest?"""
+class HomePageTest(TestCase):
 
-    def test_bad_adding(self):
-        self.assertEqual("apple" + "berry", 42)
+    def test_root_url_resolves_to_home_page_view(self):
+        """Can we resolve the URL for the home page to a view?"""
+
+        found = resolve("/")
+        self.assertEqual(found.func, home_page)
+
