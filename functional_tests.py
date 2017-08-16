@@ -5,7 +5,7 @@ class NewVisitorTest(unittest.TestCase):
     """Test that users can visit the website and make to-do items."""
 
     def setUp(self):
-        self.browser = webdriver.Chrome("/Users/jennifer/Downloads/chromedriver")
+        self.browser = webdriver.Firefox()
         self.browser.implicitly_wait(3)
 
     def tearDown(self):
