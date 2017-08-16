@@ -1,7 +1,10 @@
 sudo: enabled
+
 language: python
+
 python:
   - "2.7"
+
 install: 
   - "pip install -r requirements.txt"
   - "mkdir geckodriver"
@@ -12,11 +15,14 @@ install:
 addons:
   firefox: latest
 
-# boilerplate: https://docs.travis-ci.com/user/gui-and-headless-browsers/
+services:
+  - postgresql
+
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
+  - psql -c 'create database superlists;' -U postgres
   - "python manage.py runserver"
 
 script: "python functional_tests.py"
