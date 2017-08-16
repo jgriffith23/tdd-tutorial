@@ -6,7 +6,7 @@ install:
   - "pip install -r requirements.txt"
   - "mkdir geckodriver"
   - "wget https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-linux64.tar.gz"
-  - "tar -xvf geckodriver-v0.18.0-arm7hf.tar.gz -C geckodriver"
+  - "tar -xvf geckodriver-v0.18.0-linux64.tar.gz -C geckodriver"
   - "sudo cp geckodriver/geckodriver /usr/local/bin/"
 
 addons:
