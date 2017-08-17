@@ -1,25 +1,36 @@
-from selenium import webdriver
+from selenium.webdriver.firefox.webdriver import WebDriver
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 import unittest
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
     """Test that users can visit the website and make to-do items."""
 
-    def setUp(self):
-        self.browser = webdriver.Firefox()
-        self.browser.implicitly_wait(3)
+    # def setUp(self):
+    #     self.browser = webdriver.Firefox()
+    #     self.browser.implicitly_wait(3)
+    #
+    # def tearDown(self):
+    #     self.browser.quit()
 
-    def tearDown(self):
-        self.browser.quit()
+    @classmethod
+    def setUpClass(cls):
+        super(NewVisitorTest, cls).setUpClass()
+        cls.selenium = WebDriver()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.selenium.quit()
+        super(NewVisitorTest, cls).tearDownClass()
 
     def test_can_start_a_list_and_retrieve_it_later(self):
 
         # Jenn wants to be more organized, so she decides to try a hot
         # new to-do app. She starts by visiting the homepage:
-        self.browser.get("http://localhost:8000")
+        self.selenium.get(self.live_server_url)
 
         # The page title and header mention to-do lists.
 
-        self.assertIn('To-Do', self.browser.title)
+        self.assertIn('To-Do', self.selenium.title)p
 
         # Jenn is invited to enter a to-do item straight away. Very hospitable.
 
@@ -43,5 +54,5 @@ class NewVisitorTest(unittest.TestCase):
         # Satisfied, she goes back to coding.
 
 
-if __name__ == "__main__":
-    unittest.main()
+# if __name__ == "__main__":
+#     unittest.main()

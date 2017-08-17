@@ -26,6 +26,5 @@ before_script:
   - sleep 3 # give xvfb some time to start
 
 script:
- - "python manage.py tests"
- - "python manage.py runserver"
- - "python functional_tests.py"
+ - "python manage.py test"
+ - "python manage.py test functional_tests"
