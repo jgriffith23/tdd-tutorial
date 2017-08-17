@@ -30,7 +30,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
 
         # The page title and header mention to-do lists.
 
-        self.assertIn('To-Do', self.selenium.title)p
+        self.assertIn('To-Do', self.selenium.title)
 
         # Jenn is invited to enter a to-do item straight away. Very hospitable.
 
